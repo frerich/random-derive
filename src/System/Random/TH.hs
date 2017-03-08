@@ -1,13 +1,15 @@
+{-# LANGUAGE TemplateHaskell #-}
 {-|
 Module:         System.Random.TH
-Copyright:      (c) 2015 Frerich Raabe
+Description:    A Template Haskell helper for deriving Random instances
+Copyright:      (c) 2015-2017 Frerich Raabe
 License:        BSD3
-Maintainer:     frerich.raabe@gmail.com
+Maintainer:     frerich.raabe@gmail.com, marek.kidon@gmail.com
 Stability:      experimental
 
 This module exposes a 'deriveRandom' function which automatically creates
-'System.Random.Random' instances for data types instantiating both 'Enum' as well
-as 'Bounded'.
+'System.Random.Random' instances for data types instantiating both 'Enum'
+as well as 'Bounded'.
 
 This is useful for getting random values (or sequences of random values)
 of custom types, e.g.:
@@ -25,20 +27,20 @@ of custom types, e.g.:
 > randomColors :: Int -> [Color]
 > randomColors seed = randoms (mkStdGen seed)
 -}
-
-{-# LANGUAGE TemplateHaskell #-}
-
 module System.Random.TH
     ( deriveRandom )
-    where
+  where
 
 import Language.Haskell.TH
-
 import System.Random
 
--- |The 'deriveRandom' function derives a Random instance for the given type.
-deriveRandom :: Name    --The type to generate a 'System.Random.Random' instance for; must inhibit both 'Enum' as well as 'Bounded'.
-             -> Q [Dec]
+
+-- | The 'deriveRandom' function derives a Random instance for the given type.
+deriveRandom
+    :: Name
+        -- ^ The type to generate a 'System.Random.Random' instance for
+        -- must inhibit both 'Enum' as well as 'Bounded'.
+    -> Q [Dec]
 deriveRandom n = [d|
     instance Random $(conT n) where
       randomR (lo, hi) g = (toEnum a, g')
