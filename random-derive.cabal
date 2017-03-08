@@ -1,16 +1,15 @@
 name: random-derive
-version: 0.1.0.0
+version: 0.1.1.0
 cabal-version: >=1.10
 build-type: Simple
 license: BSD3
 license-file: LICENSE
-copyright: Copyright (c) 2015 Frerich Raabe <frerich.raabe@gmail.com>
-maintainer: frerich.raabe@gmail.com
+copyright: Copyright (c) 2015-2017 Frerich Raabe <frerich.raabe@gmail.com>
+maintainer: frerich.raabe@gmail.com, marek.kidon@gmail.com
 homepage: https://github.com/frerich/random-derive
 bug-reports: https://github.com/frerich/random-derive/issues
 synopsis: A Template Haskell helper for deriving Random instances
-description:
-    A Template Haskell helper for deriving Random instances
+description: A Template Haskell helper for deriving Random instances
 category: Development
 author: Frerich Raabe
 
@@ -22,10 +21,9 @@ library
     exposed-modules:
         System.Random.TH
     build-depends:
-        base >=4.7 && <4.9,
-        template-haskell >=2.9 && <2.11,
-        random
+        base >=4.7 && <5,
+        template-haskell >=2.9 && <2.12,
+        random <2
     default-language: Haskell2010
     ghc-options: -Wall
     hs-source-dirs: src
-
