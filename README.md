@@ -1,6 +1,8 @@
 random-derive
 =============
 
+[![Build Status](https://travis-ci.org/frerich/random-derive.svg?branch=master)](https://travis-ci.org/frerich/random-derive)
+
 This module exposes a `deriveRandom` function which automatically creates
 `Random` instances for data types instantiating both `Enum` as well as
 `Bounded`.
